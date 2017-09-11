@@ -42,6 +42,7 @@ import fredboat.db.DatabaseManager;
 import fredboat.event.EventListenerBoat;
 import fredboat.event.ShardWatchdogListener;
 import fredboat.feature.I18n;
+import fredboat.feature.Metrics;
 import fredboat.shared.constant.DistributionEnum;
 import fredboat.util.AppInfo;
 import fredboat.util.GitRepoState;
@@ -111,6 +112,7 @@ public abstract class FredBoat {
             System.out.println("Version info printed, exiting.");
             return;
         }
+        Metrics.setup();
 
         Runtime.getRuntime().addShutdownHook(new Thread(ON_SHUTDOWN, "FredBoat main shutdownhook"));
         log.info(getVersionInfo());
