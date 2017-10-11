@@ -42,6 +42,7 @@ import net.dv8tion.jda.core.requests.SessionReconnectQueue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Collections;
 import java.util.concurrent.Future;
 
 public class FredBoatBot extends FredBoat {
@@ -56,7 +57,7 @@ public class FredBoatBot extends FredBoat {
         this.listener = listener;
         log.info("Building shard " + shardId);
         jda = buildJDA();
-        uniqueUsersCounterAgent.addAction(this::countUniqueUsersShard);
+        jdaEntityCountAgent.addAction(() -> jdaEntityCountsShard.count(Collections.singletonList(this)));
     }
 
     private JDA buildJDA(boolean... blocking) {
