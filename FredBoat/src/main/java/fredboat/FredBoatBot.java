@@ -56,6 +56,7 @@ public class FredBoatBot extends FredBoat {
         this.listener = listener;
         log.info("Building shard " + shardId);
         jda = buildJDA();
+        uniqueUsersCounterAgent.addAction(this::countUniqueUsersShard);
     }
 
     private JDA buildJDA(boolean... blocking) {
